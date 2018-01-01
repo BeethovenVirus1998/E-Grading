@@ -8,7 +8,7 @@
                         <div class="panel-body">
                         <div class="table-responsive">
               <form action="?page=laporan_penilaian" method="post">
-            <input type='text' class="form-control" style="margin-bottom: 4px;" name='qcari' placeholder='Cari berdasarkan NIM atau Nama Mahasiswa' required /> 
+            <input type='text' class="form-control" style="margin-bottom: 4px;" name='qcari' placeholder='Cari berdasarkan NIM' /> 
            <input type='submit' value='Cari Data' class="btn btn-sm btn-primary" /> <a href='?page=laporan_penilaian' class="btn btn-sm btn-success" >Refresh</i></a>
     
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" class="table table-hover table table-bordered">
@@ -34,8 +34,7 @@
                     if(isset($_POST['qcari'])){
                  $qcari=$_POST['qcari'];
                  $query1="SELECT * FROM tbl_nilai nilai, data_mahasiswa mahasiswa, setup_matkul matkul, setup_kelas kelas, tbl_tugas tugas WHERE tugas.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_kelas=kelas.id_kelas and nilai.id_matkul=matkul.id_matkul and nilai.id_dosen='$id_dosen' 
-                 and nim like '%$qcari%'
-                 or nama_mahasiswa like '%$qcari%'  ";
+                 and nim like '%$qcari%'";
                     }
                     $view=mysqli_query($koneksi,$query1) or die(mysqli_error());
 

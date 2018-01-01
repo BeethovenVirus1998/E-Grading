@@ -46,9 +46,9 @@ include "conn.php";
 		$id_kelas=$_GET['id_kelas'];
 		$id_matkul=$_GET['id_matkul'];
 		
-		$dosen=mysqli_fetch_array(mysqli_query("select * from data_dosen where id_dosen='$id_dosen'"));
-		$kelas=mysqli_fetch_array(mysqli_query("select * from setup_kelas where id_kelas='$id_kelas'"));
-		$matkul=mysqli_fetch_array(mysqli_query("select * from setup_matkul where id_matkul='$id_matkul'"));
+		$dosen=mysqli_fetch_array(mysqli_query($koneksi,"select * from data_dosen where id_dosen='$id_dosen'"));
+		$kelas=mysqli_fetch_array(mysqli_query($koneksi,"select * from setup_kelas where id_kelas='$id_kelas'"));
+		$matkul=mysqli_fetch_array(mysqli_query($koneksi,"select * from setup_matkul where id_matkul='$id_matkul'"));
 		
 		$nama_dosen=$dosen['nama_dosen'];
 		$nama_kelas=$kelas['nama_kelas'];
@@ -103,7 +103,7 @@ include "conn.php";
         
         
         <?php
-		$view=mysqli_query("SELECT * FROM tbl_tugas tugas, data_mahasiswa mahasiswa WHERE tugas.id_mahasiswa=mahasiswa.id_mahasiswa and tugas.id_dosen='$id_dosen' and tugas.id_kelas='$id_kelas' and tugas.id_matkul='$id_matkul' order by mahasiswa.nama_mahasiswa asc");
+		$view=mysqli_query($koneksi,"SELECT * FROM tbl_tugas tugas, data_mahasiswa mahasiswa WHERE tugas.id_mahasiswa=mahasiswa.id_mahasiswa and tugas.id_dosen='$id_dosen' and tugas.id_kelas='$id_kelas' and tugas.id_matkul='$id_matkul' order by mahasiswa.nama_mahasiswa asc");
 		
 		$i = 1;
 		while($row=mysqli_fetch_array($view)){
@@ -124,7 +124,7 @@ include "conn.php";
 		}
 			$jumSis = $i-1;
 		?>
-        <input type="hidden" name="jumlah" value="<?php echo $jumSis ?>" />
+        
         </table>
         
         </form>

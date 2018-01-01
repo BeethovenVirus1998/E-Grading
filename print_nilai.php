@@ -1,6 +1,6 @@
 <?php
 session_start();
-// memanggil library FPDF
+
 require('fpdf17/fpdf.php');
 
 
@@ -8,20 +8,20 @@ include 'conn.php';
 
 $id_dosen = $_SESSION['id_dosen'];
                     
-$result=mysqli_query("SELECT * FROM tbl_nilai nilai, data_mahasiswa mahasiswa, setup_matkul matkul, setup_kelas kelas, tbl_tugas tugas, data_dosen dosen WHERE tugas.id_dosen=dosen.id_dosen and nilai.id_dosen=dosen.id_dosen and tugas.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_kelas=kelas.id_kelas and nilai.id_matkul=matkul.id_matkul and nilai.id_dosen='$id_dosen' order by mahasiswa.nama_mahasiswa asc") or die(mysql_error());
+$result=mysqli_query($koneksi,"SELECT * FROM tbl_nilai nilai, data_mahasiswa mahasiswa, setup_matkul matkul, setup_kelas kelas, tbl_tugas tugas, data_dosen dosen WHERE tugas.id_dosen=dosen.id_dosen and nilai.id_dosen=dosen.id_dosen and tugas.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_kelas=kelas.id_kelas and nilai.id_matkul=matkul.id_matkul and nilai.id_dosen='$id_dosen' order by mahasiswa.nama_mahasiswa asc") or die(mysql_error());
 
 
 
     
 
 
-// intance object dan memberikan pengaturan halaman PDF
+
 $pdf = new FPDF('L','mm','A4');
-// membuat halaman baru
+
 $pdf->AddPage();
-// setting jenis font yang akan digunakan
+
 $pdf->SetFont('Arial','B',16);
-// mencetak string 
+
 $pdf->Image('images/POLINDRA.png',3,3,28);
 $pdf->Cell(270,7,'Laporan Penliaaan Mahasiswa',0,1,'C');
 $pdf->Cell(190,7,'                                                                                                               _______________________________________________________________________________________________________',0,1,'C');
@@ -31,7 +31,7 @@ $pdf->Cell(270,7,'Teknik Informatika Politeknik Negeri Indramayu',0,1,'C');
 
 
  
-// Memberikan space kebawah agar tidak terlalu rapat
+
 $pdf->Cell(10,7,'',0,1);
  
 $pdf->SetFont('Arial','B',10);

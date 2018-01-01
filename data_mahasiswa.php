@@ -180,9 +180,7 @@ if(is_file("gambar/".$row['foto']))
     <a href="javascript:;"><img src="./images/excel-icon.png" title="Export Data" width="50" height="50" border="0" onClick="window.open('./excel/export_data_mahasiswa.php','scrollwindow','top=200,left=300,width=800,height=500');"></a>
     </center><br>
 
-<a href="home.php?page=import" class="btn btn-success pull-right">
-        <span class="glyphicon glyphicon-upload"></span> Import Data
-      </a><br><br>
+
 
         <form id="mainform" action="">
         <table border="0" width="100%" cellpadding="0" cellspacing="0" class="table table-hover table table-bordered">

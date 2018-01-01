@@ -23,8 +23,8 @@ if(isset($_POST['submit'])){
 	   $id_kelas = $_POST['id_kelas'];
 	   $id_matkul = $_POST['id_matkul'];
 	
-	   $query = "update tbl_nilai set kehadiran='$kehadiran', tugas='$tugas', project='$project', uts='$uts', uas='$uas' where id_mahasiswa='$id_mahasiswa' and id_matkul='$id_matkul' and id_kelas='$id_kelas' and id_dosen='$id_dosen'";
-	   $hasil=mysqli_query($query);
+	   $hasil = mysqli_query ($koneksi, "UPDATE tbl_nilai set kehadiran='$kehadiran', tugas='$tugas', project='$project', uts='$uts', uas='$uas' where id_mahasiswa='$id_mahasiswa' and id_matkul='$id_matkul' and id_kelas='$id_kelas' and id_dosen='$id_dosen'");
+	   
 	}
 	
 	if($hasil){
@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
             <div id="message-red">
             <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tr>
-                <td class="red-left"><?php echo mysqli_error();?></td>
+                <td class="red-left">Data Gagal Disimpan</td>
                 <td class="red-right"><a class="close-red"><img src="images/table/icon_close_red.gif"   alt="" /></a></td>
             </tr>
             </table>
@@ -87,9 +87,9 @@ if(isset($_POST['submit'])){
 		$id_kelas=$_GET['id_kelas'];
 		$id_matkul=$_GET['id_matkul'];
 		
-		$dosen=mysqli_fetch_array(mysqli_query($koneksi,"select * from data_dosen where id_dosen='$id_dosen'"));
-		$kelas=mysqli_fetch_array(mysqli_query($koneksi,"select * from setup_kelas where id_kelas='$id_kelas'"));
-		$matkul=mysqli_fetch_array(mysqli_query($koneksi,"select * from setup_matkul where id_matkul='$id_matkul'"));
+		$dosen=mysqli_fetch_array(mysqli_query($koneksi,"SELECT * from data_dosen where id_dosen='$id_dosen'"));
+		$kelas=mysqli_fetch_array(mysqli_query($koneksi,"SELECT * from setup_kelas where id_kelas='$id_kelas'"));
+		$matkul=mysqli_fetch_array(mysqli_query($koneksi,"SELECT * from setup_matkul where id_matkul='$id_matkul'"));
 		
 		$nama_dosen=$dosen['nama_dosen'];
 		$nama_kelas=$kelas['nama_kelas'];
@@ -145,7 +145,7 @@ if(isset($_POST['submit'])){
         
         
         <?php
-		$view=mysqli_query($koneksi,"SELECT * FROM tbl_nilai nilai, tbl_tugas tugas, data_mahasiswa mahasiswa WHERE tugas.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_dosen='$id_dosen' and nilai.id_kelas='$id_kelas' and nilai.id_matkul='$id_matkul' order by mahasiswa.nama_mahasiswa asc");
+		$view=mysqli_query($koneksi, "SELECT * FROM tbl_nilai nilai, tbl_tugas tugas, data_mahasiswa mahasiswa WHERE tugas.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_dosen='$id_dosen' and nilai.id_kelas='$id_kelas' and nilai.id_matkul='$id_matkul' order by mahasiswa.nama_mahasiswa asc");
 		
 		$i = 1;
 		while($row=mysqli_fetch_array($view)){
@@ -170,7 +170,7 @@ if(isset($_POST['submit'])){
 		}
 			$jumSis = $i-1;
 		?>
-        <input type="hidden" name="jumlah" value="<?php echo $jumSis ?>" />
+        
         <tr>
             <td colspan="12" align="center"><input type="submit" onclick="return confirm('Apakah Anda yakin?')" class="btn btn-primary" value="Update" name="submit"/></td>
         </tr>

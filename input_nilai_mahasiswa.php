@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 	{
 	   $id_mahasiswa = $_POST['id_mahasiswa'.$i];
 	   $kehadiran  = $_POST['kehadiran'.$i];
-	   //$tugas = $_POST['tugas'.$i];
+	  
 	   $project = $_POST['project'.$i];
 	   $uts = $_POST['uts'.$i];
 	   $uas = $_POST['uas'.$i];
@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
 	   $id_kelas = $_POST['id_kelas'];
 	   $id_matkul = $_POST['id_matkul'];
 
-	   $query = "insert into tbl_nilai values('','$id_mahasiswa','$id_matkul','$id_kelas','$id_dosen','$kehadiran','$project','$uts','$uas')";
+	   $query = "INSERT into tbl_nilai values('','$id_mahasiswa','$id_matkul','$id_kelas','$id_dosen','$kehadiran','$project','$uts','$uas')";
 	   $hasil=mysqli_query($koneksi,$query);
 	}
 	
@@ -150,7 +150,7 @@ if(isset($_POST['submit'])){
 				<td><?php echo $row['nama_mahasiswa'];?></td>
 				<td><?php echo $row['nim'];?></td>
 				<td><?php echo "<input type='text' name='kehadiran".$i."' size='10'/>"; ?></td>
-				<td><?php echo //(0.2*$row['tugas_1']) + (0.2*$row['tugas_2']) + (0.2*$row['tugas_3']) + (0.2*$row['tugas_4']) + (0.2*$row['tugas_5'])
+				<td><?php echo (0.2*$row['tugas_1']) + (0.2*$row['tugas_2']) + (0.2*$row['tugas_3']) + (0.2*$row['tugas_4']) + (0.2*$row['tugas_5'])
 				0; ?></td>
 				<td><?php echo "<input type='text' name='project".$i."' size='10'/>"; ?></td>
 				<td><?php echo "<input type='text' name='uts".$i."' size='10'/>"; ?></td>
@@ -162,7 +162,7 @@ if(isset($_POST['submit'])){
 		}
 			$jumSis = $i-1;
 		?>
-        <input type="hidden" name="jumlah" value="<?php echo $jumSis ?>" />
+       
         <tr>
             <td colspan="12" align="center"><input type="submit" onclick="return confirm('Apakah Anda yakin?')" class="btn btn-primary" value="Input" name="submit"/></td>
         </tr>

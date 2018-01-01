@@ -31,8 +31,8 @@ if(isset($_POST['submit'])){
 	   $id_kelas = $_POST['id_kelas'];
 	   $id_matkul = $_POST['id_matkul'];
 	
-	   $query = "insert into tbl_tugas values('','$id_mahasiswa','$id_matkul','$id_kelas','$id_dosen','$tugas_1','$tugas_2','$tugas_3','$tugas_4','$tugas_5','$tugas_6','$tugas_7','tugas_8','tugas_9','tugas_10','tugas_11', 'tugas_12', 'tugas_13', 'tugas_14','tugas_15')";
-	   $hasil=mysqli_query($query);
+	   $query = "INSERT into tbl_tugas values('','$id_mahasiswa','$id_matkul','$id_kelas','$id_dosen','$tugas_1','$tugas_2','$tugas_3','$tugas_4','$tugas_5','$tugas_6','$tugas_7','tugas_8','tugas_9','tugas_10','tugas_11', 'tugas_12', 'tugas_13', 'tugas_14','tugas_15')";
+	   $hasil=mysqli_query($koneksi, $query);
 	}
 	
 	if($hasil){
@@ -98,9 +98,9 @@ if(isset($_POST['submit'])){
 		$id_kelas=$_GET['id_kelas'];
 		$id_matkul=$_GET['id_matkul'];
 		
-		$dosen=mysqli_fetch_array(mysqli_query("select * from data_dosen where id_dosen='$id_dosen'"));
-		$kelas=mysqli_fetch_array(mysqli_query("select * from setup_kelas where id_kelas='$id_kelas'"));
-		$matkul=mysqli_fetch_array(mysqli_query("select * from setup_matkul where id_matkul='$id_matkul'"));
+		$dosen=mysqli_fetch_array(mysqli_query($koneksi, "select * from data_dosen where id_dosen='$id_dosen'"));
+		$kelas=mysqli_fetch_array(mysqli_query($koneksi, "select * from setup_kelas where id_kelas='$id_kelas'"));
+		$matkul=mysqli_fetch_array(mysqli_query($koneksi, "select * from setup_matkul where id_matkul='$id_matkul'"));
 		
 		$nama_dosen=$dosen['nama_dosen'];
 		$nama_kelas=$kelas['nama_kelas'];
@@ -154,7 +154,7 @@ if(isset($_POST['submit'])){
         
         
         <?php
-		$view=mysqli_query("SELECT * FROM tbl_ruangan ruangan, data_mahasiswa mahasiswa WHERE ruangan.id_mahasiswa=mahasiswa.id_mahasiswa and ruangan.id_kelas='$id_kelas' order by mahasiswa.nama_mahasiswa asc");
+		$view=mysqli_query($koneksi, "SELECT * FROM tbl_ruangan ruangan, data_mahasiswa mahasiswa WHERE ruangan.id_mahasiswa=mahasiswa.id_mahasiswa and ruangan.id_kelas='$id_kelas' order by mahasiswa.nama_mahasiswa asc");
 		
 		$i = 1;
 		while($row=mysqli_fetch_array($view)){

@@ -2,15 +2,9 @@
 
 include "conn.php";
 
-?>
 
 
-
-
-
-
-
-      <?php
+      
 			if($_GET['status']=='1'){
 			?>
 			
@@ -32,7 +26,7 @@ include "conn.php";
             <div id="message-red">
             <table border="0" width="100%" cellpadding="0" cellspacing="0">
             <tr>
-                <td class="red-left"><?php echo mysql_error();?></td>
+                <td class="red-left">Data Gagal Disimpan</td>
                 <td class="red-right"><a class="close-red"><img src="images/table/icon_close_red.gif"   alt="" /></a></td>
             </tr>
             </table>
@@ -53,9 +47,10 @@ include "conn.php";
 		$id_kelas=$_GET['id_kelas'];
 		$id_matkul=$_GET['id_matkul'];
 		
-		$dosen=mysqli_fetch_array(mysqli_query($koneksi,"select * from data_dosen where id_dosen='$id_dosen'"));
-		$kelas=mysqli_fetch_array(mysqli_query($koneksi,"select * from setup_kelas where id_kelas='$id_kelas'"));
-		$matkul=mysqli_fetch_array(mysqli_query($koneksi,"select * from setup_matkul where id_matkul='$id_matkul'"));
+    
+		$dosen=mysqli_fetch_array(mysqli_query($koneksi,"SELECT * from data_dosen where id_dosen='$id_dosen'"));
+		$kelas=mysqli_fetch_array(mysqli_query($koneksi,"SELECT * from setup_kelas where id_kelas='$id_kelas'"));
+		$matkul=mysqli_fetch_array(mysqli_query($koneksi,"SELECT * from setup_matkul where id_matkul='$id_matkul'"));
 		
 		$nama_dosen=$dosen['nama_dosen'];
 		$nama_kelas=$kelas['nama_kelas'];
@@ -77,7 +72,7 @@ include "conn.php";
         <table border="0" cellpadding="0" cellspacing="0"  id="id-form">
         <tr>
           <th>Nama Dosen</th>
-          <td><input style="width: 350px;" type="text" class="form-control" name="nama_mahasiswa" value="<?php echo $nama_dosen;?>" disabled="disabled"/></td>
+          <td><input style="width: 350px;" type="text" class="form-control" name="nama_dosen" value="<?php echo $nama_dosen;?>" disabled="disabled"/></td>
           <td></td>
         </tr>
          <tr>
@@ -87,7 +82,7 @@ include "conn.php";
         </tr>
         <tr>
           <th>Kelas</th>
-          <td><input type="text" class="form-control" name="nim" value="<?php echo $nama_kelas;?>" disabled="disabled"/></td>
+          <td><input type="text" class="form-control" name="nama_kelas" value="<?php echo $nama_kelas;?>" disabled="disabled"/></td>
           <td></td>
         </tr>
       </table>
@@ -112,7 +107,7 @@ include "conn.php";
 
         
         <?php
-		$view=mysqli_query($koneksi,"SELECT * FROM tbl_nilai nilai, tbl_tugas tugas, data_mahasiswa mahasiswa WHERE tugas.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_dosen='$id_dosen' and nilai.id_kelas='$id_kelas' and nilai.id_matkul='$id_matkul' order by mahasiswa.nama_mahasiswa asc");
+		$view=mysqli_query($koneksi, "SELECT * FROM tbl_nilai nilai, tbl_tugas tugas, data_mahasiswa mahasiswa WHERE tugas.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_mahasiswa=mahasiswa.id_mahasiswa and nilai.id_dosen='$id_dosen' and nilai.id_kelas='$id_kelas' and nilai.id_matkul='$id_matkul' order by mahasiswa.nama_mahasiswa asc");
 		
 		$i = 1;
 		while($row=mysqli_fetch_array($view)){
