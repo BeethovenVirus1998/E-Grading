@@ -8,7 +8,7 @@ include "conn.php";
     	<?php
 		
 		$id_mahasiswa=$_SESSION['id_mahasiswa'];
-		$mahasiswa=mysqli_fetch_array(mysqli_query($koneksi,"select mahasiswa.nama_mahasiswa, mahasiswa.nim, kelas.nama_kelas from tbl_ruangan ruangan, data_mahasiswa mahasiswa, setup_kelas kelas where ruangan.id_mahasiswa=mahasiswa.id_mahasiswa and ruangan.id_mahasiswa='$id_mahasiswa' and ruangan.id_kelas=kelas.id_kelas"));
+		$mahasiswa=mysqli_fetch_array(mysqli_query($koneksi,"SELECT mahasiswa.nama_mahasiswa, mahasiswa.nim, kelas.nama_kelas from tbl_ruangan ruangan, data_mahasiswa mahasiswa, setup_kelas kelas where ruangan.id_mahasiswa=mahasiswa.id_mahasiswa and ruangan.id_mahasiswa='$id_mahasiswa' and ruangan.id_kelas=kelas.id_kelas"));
 		
 		$nama_mahasiswa=$mahasiswa['nama_mahasiswa'];
 		$nim=$mahasiswa['nim'];
