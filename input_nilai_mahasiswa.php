@@ -150,8 +150,7 @@ if(isset($_POST['submit'])){
 				<td><?php echo $row['nama_mahasiswa'];?></td>
 				<td><?php echo $row['nim'];?></td>
 				<td><?php echo "<input type='text' name='kehadiran".$i."' size='10'/>"; ?></td>
-				<td><?php echo (0.2*$row['tugas_1']) + (0.2*$row['tugas_2']) + (0.2*$row['tugas_3']) + (0.2*$row['tugas_4']) + (0.2*$row['tugas_5'])
-				0; ?></td>
+				<td><?php echo (0.2*$row['tugas_1']) + (0.2*$row['tugas_2']) + (0.2*$row['tugas_3']) + (0.2*$row['tugas_4']) + (0.2*$row['tugas_5']); ?></td>
 				<td><?php echo "<input type='text' name='project".$i."' size='10'/>"; ?></td>
 				<td><?php echo "<input type='text' name='uts".$i."' size='10'/>"; ?></td>
 				<td><?php echo "<input type='text' name='uas".$i."' size='10'/>"; ?></td>
